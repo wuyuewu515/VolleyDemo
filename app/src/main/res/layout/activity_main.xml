@@ -4,19 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ccc"
     tools:context="wyw.com.volleydemo.MainActivity">
 
     <TextView
-        android:id="@+id/tv_getNetData"
+        android:id="@+id/tv_getNetDataByJson"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="#2b2"
         android:gravity="center"
-        android:text="获取网络数据"
+        android:text="postJson方式获取网络数据"
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/tv_getNetDataByString"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="0.5dp"
+        android:background="#2b2"
+        android:gravity="center"
+        android:text="postString方式获取网络数据"
         android:textColor="#fff" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recy_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recy_contentString"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

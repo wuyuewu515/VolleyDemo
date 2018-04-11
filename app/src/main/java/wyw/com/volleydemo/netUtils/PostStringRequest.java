@@ -3,9 +3,7 @@ package wyw.com.volleydemo.netUtils;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONObject;
+import com.android.volley.toolbox.StringRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,10 +11,10 @@ import java.util.Map;
 /**
  * 作者: 伍跃武
  * 时间： 2018/4/11
- * 描述：自定义参数为json的post请求
+ * 描述：psotString 方式请求
  */
 
-public class PostJsonRequset extends JsonObjectRequest {
+public class PostStringRequest extends StringRequest {
 
     /**
      * 请求超时时间
@@ -38,17 +36,11 @@ public class PostJsonRequset extends JsonObjectRequest {
 
     //以上代码建议放在全局的常亮类中，作为演示，暂时在这里
 
-    /**
-     * 构造函数
-     *
-     * @param url           请求链接
-     * @param jsonRequest   参数转换成为json对象
-     * @param listener      请求成功的监听
-     * @param errorListener 请求失败的监听
-     */
-    public PostJsonRequset(String url, JSONObject jsonRequest, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
-        super(Method.POST, url, jsonRequest, listener, errorListener);
-        //设置重试策略
+    private Map<String, String> mParams = new HashMap<>();
+
+    public PostStringRequest(String url, Map<String, String> params, Response.Listener<String> listener, Response.ErrorListener errorListener) {
+        super(Method.POST, url, listener, errorListener);
+        this.mParams = params;
         setRetryPolicy(new DefaultRetryPolicy(SOCKET_TIMEOUT, MAX_RETRIES, BACK_OFF));
     }
 
@@ -72,11 +64,14 @@ public class PostJsonRequset extends JsonObjectRequest {
     public Map<String, String> getHeaders() throws AuthFailureError {
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Charsert", getParamsEncoding());
-//        headers.put("Content-Type", "application/json;charset=utf-8");
-//        headers.put("Accept-Encoding", "gzip,deflate");
-//        headers.put("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");
+        headers.put("Content-Type", "application/json;charset=utf-8");
+        headers.put("Accept-Encoding", "gzip,deflate");
+        headers.put("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");
         return headers;
     }
 
-
+    @Override
+    public Map<String, String> getParams() {
+        return mParams;
+    }
 }

@@ -109,6 +109,45 @@ public class HttpUtil {
     }
 
     /**
+     * postString请求
+     *
+     * @param url             服务器地址
+     * @param params          参数
+     * @param requestListener 请求监听
+     * @return
+     */
+    public Request<String> doPostByStr(String url, Map<String, String> params,
+                                       RequestListener requestListener) {
+
+        //    在每次请求发起之前先进行网络检查
+//        if (!checkNetState(mContext)) {
+//            Toast.makeText(mContext, R.string.net_error_check, Toast.LENGTH_SHORT)
+//                    .show();
+//            return null;
+//        }
+
+
+//依照实际需求添加固定参数 如token之类的
+//        params.put("appVerison", BuildConfig.VERSION_NAME);
+//        String accessToken = Constants.getAccessToken(mContext);
+//        if (!TextUtils.isEmpty(accessToken)) {
+//            params.put("access_token", accessToken);
+//        }
+
+
+        PostStringRequest postStrRequset = new PostStringRequest(url, params,
+                new IMStringListener(requestListener, mContext),
+                new IMErrorListener(requestListener, mContext));
+
+        Request<String> request = queue.add(postStrRequset);
+
+        // 为请求添加context标记
+        request.setTag(mContext);
+        return request;
+    }
+
+
+    /**
      * 清除当前activity所有的请求
      */
     public void cancelAllRequestQueue() {
