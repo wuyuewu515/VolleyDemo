@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#ccc"
+    android:orientation="vertical"
     tools:context="wyw.com.volleydemo.MainActivity">
 
     <TextView
@@ -26,14 +26,10 @@
         android:text="postString方式获取网络数据"
         android:textColor="#fff" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recy_content"
+    <TextView
+        android:id="@+id/tv_result"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recy_contentString"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#FFFFE0" />
 
 </LinearLayout>

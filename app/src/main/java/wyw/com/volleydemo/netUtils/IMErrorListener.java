@@ -2,6 +2,7 @@ package wyw.com.volleydemo.netUtils;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.NoConnectionError;
@@ -39,6 +40,13 @@ public class IMErrorListener implements Response.ErrorListener {
     public void onErrorResponse(VolleyError error) {
 
         Toast.makeText(mContext, "返回错误" + error.getMessage(), Toast.LENGTH_LONG).show();
+
+        if (error != null && error.networkResponse != null && error.networkResponse.data != null) {
+            byte[] htmlBodyBytes = error.networkResponse.data;
+            if (htmlBodyBytes != null) {
+                Log.i("volley", "VolleyError=" + new String(htmlBodyBytes));
+            }
+        }
 //        LoadingDialog.dismiss();
 //
 //        Resources resources = App.getInstance().getResources();

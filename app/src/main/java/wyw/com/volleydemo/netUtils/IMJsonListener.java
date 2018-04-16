@@ -21,9 +21,6 @@ public class IMJsonListener implements Response.Listener<JSONObject> {
     private RequestListener requestListener;
     private Context mContext;
 
-    public IMJsonListener(RequestListener requestListener) {
-        this.requestListener = requestListener;
-    }
 
     public IMJsonListener(RequestListener requestListener, Context context) {
         this.requestListener = requestListener;

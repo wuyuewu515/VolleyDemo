@@ -64,9 +64,9 @@ public class PostStringRequest extends StringRequest {
     public Map<String, String> getHeaders() throws AuthFailureError {
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Charsert", getParamsEncoding());
-        headers.put("Content-Type", "application/json;charset=utf-8");
-        headers.put("Accept-Encoding", "gzip,deflate");
-        headers.put("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");
+//        headers.put("Content-Type", "application/json;charset=utf-8");
+//        headers.put("Accept-Encoding", "gzip,deflate");
+//        headers.put("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3");
         return headers;
     }
 

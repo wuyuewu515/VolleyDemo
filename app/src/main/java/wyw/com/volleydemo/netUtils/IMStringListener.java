@@ -6,6 +6,9 @@ import android.text.TextUtils;
 
 import com.android.volley.Response;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import wyw.com.volleydemo.JsonUtils;
 import wyw.com.volleydemo.ResponseInfo;
 
@@ -37,42 +40,41 @@ public class IMStringListener implements Response.Listener<String> {
 
     @Override
     public void onResponse(String response) {
+        this.requestListener.onSuccess(response);
 
-        try {
-            //     LoadingDialog.dismiss();
-
-            // 将JSONObject转换成String
-            String responseText = response.toString();
-
-            // 获得请求结果
-            Resources res = mContext.getResources();
-
-            // 返回对象为NULL、空、以及状态码为-1时
-            if (TextUtils.isEmpty(responseText)) {
-                this.requestListener.onError("服务器貌似GG了...");
-                return;
-            }
-
-            // 获取状态码
-            ResponseInfo responseInfo = JsonUtils.json2Object(responseText, ResponseInfo.class);
-
-            // response不符合规范
-            if (null == responseInfo) {
-                this.requestListener.onError("服务器还是GG了");
-                return;
-            }
-            if (200 == responseInfo.getCode()) { //服务器正常，回调到onsucess方法
-                this.requestListener.onSuccess(JsonUtils.getJSONObjectKeyVal(responseText,"data"));
-            }
+//        try {
+//            //     LoadingDialog.dismiss();
 //
-
-        } catch (Exception e) {
+//            // 将JSONObject转换成String
+//            String responseText = response.toString();
+//
+//            // 获得请求结果
+//            Resources res = mContext.getResources();
+//
+//            // 返回对象为NULL、空、以及状态码为-1时
+//            if (TextUtils.isEmpty(responseText)) {
+//                this.requestListener.onError("服务器貌似GG了...");
+//                return;
+//            }
+//
+//            // 获取状态码
+//            ResponseInfo responseInfo = JsonUtils.json2Object(responseText, ResponseInfo.class);
+//
+//            // response不符合规范
+//            if (null == responseInfo) {
+//                this.requestListener.onError("服务器还是GG了");
+//                return;
+//            }
+//            if (200 == responseInfo.getCode()) { //服务器正常，回调到onsucess方法
+//                this.requestListener.onSuccess(JsonUtils.getJSONObjectKeyVal(responseText,"data"));
+//            }
+//        } catch (Exception e) {
 //            if (BuildConfig.DEBUG) {//调试模式下直接抛出异常
 //                throw e;
 //            } else {//release环境下提示错误，同时上报异常
 //                this.requestListener.onError(mContext.getResources().getString(R.string.net_error_ununited));
 //                MobclickAgent.reportError(mContext, e);
 //            }
-        }
+//        }
     }
 }
