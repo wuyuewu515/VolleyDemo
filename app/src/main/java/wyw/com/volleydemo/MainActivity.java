@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textViewByString;
     private TextView textViewResult;
 
-    //建议在application类中初始化
+    //建议在BaseActiviy类中初始化,并设置为protected
     private HttpUtil httpUtil;
     private Context mActivity;
-
+    private String key = "0ae2908783b34579b5af9e8b369aae22";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +67,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
 
             case R.id.tv_getNetDataByJson: { //通过json请求
-                Map<String, Object> params = new HashMap<>();
-                params.put("city", "CN101010100");
-                params.put("key", "0ae2908783b34579b5af9e8b369aae22");
-                httpUtil.doPostByJson(BASE_URL, params, requestListener);
+
+                //暂时不可用，没找到参数是需要json 数据类型的
+//                Map<String, Object> params = new HashMap<>();
+//                params.put("city", "CN101010100");
+//                params.put("key", "0ae2908783b34579b5af9e8b369aae22");
+//                httpUtil.doPostByJson(BASE_URL, params, requestListener);
 
             }
             break;
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String location = "北京";
 
                 Map<String, String> params = new HashMap<>();
-                params.put("key", "0ae2908783b34579b5af9e8b369aae22");
+                params.put("key", key);
                 params.put("location", location);
                 httpUtil.doPostByStr(BASE_URL, params, strRequestListener);
 

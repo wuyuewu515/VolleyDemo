@@ -70,6 +70,10 @@ public class PostStringRequest extends StringRequest {
         return headers;
     }
 
+    /**
+     * 重写获取参数的方法
+     * @return
+     */
     @Override
     public Map<String, String> getParams() {
         return mParams;
